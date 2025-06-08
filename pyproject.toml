@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agent-api-framework"
+name = "wrapNode"
 version = "0.1.0"
 description = "A production-ready framework for exposing AI agents via FastAPI endpoints"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Agent API Framework", email = "contact@agentapi.dev"}
+    {name = "wrapNode", email = "durgachikkaladev@gmail.com"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -44,7 +44,7 @@ dev = [
 ]
 
 [project.scripts]
-agent-api-framework = "agent_api_framework.cli:main"
+awrapNode = "wrapNode.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/agent-api-framework/agent-api-framework"
@@ -53,7 +53,7 @@ Documentation = "https://agent-api-framework.readthedocs.io"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["agent_api_framework*"]
+include = ["wrapNode"]
 
 [tool.black]
 line-length = 88
@@ -66,4 +66,4 @@ line_length = 88
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
-addopts = "--cov=agent_api_framework --cov-report=term-missing --cov-report=html"
+addopts = "--cov=wrapNode--cov-report=term-missing --cov-report=html"

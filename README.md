@@ -1,4 +1,4 @@
-# Agent API Framework
+# wrapNode
 
 A production-ready Python framework for exposing AI and automation agents via FastAPI endpoints. Build scalable agent APIs with support for both HTTP and WebSocket endpoints, complete with lifecycle management, configuration, and testing utilities.
 
@@ -15,12 +15,12 @@ A production-ready Python framework for exposing AI and automation agents via Fa
 ## 📦 Installation
 
 ```bash
-pip install agent-api-framework
+pip install wrapNode
 ```
 
 For development:
 ```bash
-pip install agent-api-framework[dev]
+pip install wrapNode
 ```
 
 ## 🏃 Quick Start
@@ -29,7 +29,7 @@ pip install agent-api-framework[dev]
 
 ```python
 # echo_agent.py
-from agent_api_framework import AgentHTTPHandler
+from wrapNode import AgentHTTPHandler
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
@@ -43,7 +43,7 @@ class EchoAgent(AgentHTTPHandler):
 
 ```python
 # chat_agent.py
-from agent_api_framework import AgentWSHandler
+from wrapNode import AgentWSHandler
 from fastapi import WebSocket
 import json
 
@@ -61,7 +61,7 @@ class ChatAgent(AgentWSHandler):
 
 ```python
 # main.py
-from agent_api_framework import AppConfig, HTTPRouteConfig, WSRouteConfig, create_agent_app
+from wrapNode import AppConfig, HTTPRouteConfig, WSRouteConfig, create_agent_app
 from echo_agent import EchoAgent
 from chat_agent import ChatAgent
 
@@ -116,7 +116,7 @@ wscat -c ws://localhost:8000/ws/chat
 
 #### HTTP Handlers
 ```python
-from agent_api_framework import AgentHTTPHandler
+from wrapNode import AgentHTTPHandler
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
@@ -136,7 +136,7 @@ class MyHTTPAgent(AgentHTTPHandler):
 
 #### WebSocket Handlers
 ```python
-from agent_api_framework import AgentWSHandler
+from wrapNode import AgentWSHandler
 from fastapi import WebSocket
 
 class MyWSAgent(AgentWSHandler):
@@ -158,7 +158,7 @@ class MyWSAgent(AgentWSHandler):
 ### Configuration
 
 ```python
-from agent_api_framework import AppConfig, HTTPRouteConfig, WSRouteConfig, CORSConfig
+from wrapNode import AppConfig, HTTPRouteConfig, WSRouteConfig, CORSConfig
 
 config = AppConfig(
     title="My Agent API",
@@ -205,12 +205,12 @@ The framework includes a CLI tool for quick development and deployment:
 
 ### Initialize a New Project
 ```bash
-agent-api-framework init --directory ./my_agents
+wrapNode init --directory ./my_agents
 ```
 
 ### Run Agents from Command Line
 ```bash
-agent-api-framework run \
+wrapNode run \
   --agent-dir ./my_agents \
   --port 8080 \
   --http /echo:EchoHandler,/health:HealthHandler \
@@ -225,7 +225,7 @@ The framework includes comprehensive testing utilities:
 # test_my_agent.py
 import pytest
 from fastapi.testclient import TestClient
-from agent_api_framework import AppConfig, HTTPRouteConfig, create_agent_app
+from wrapNode import AppConfig, HTTPRouteConfig, create_agent_app
 from my_agent import MyAgent
 
 @pytest.fixture
@@ -287,7 +287,7 @@ config = AppConfig(
 
 ### Error Handling
 ```python
-from agent_api_framework.utils import create_error_response, create_success_response
+from wrapNode.utils import create_error_response, create_success_response
 
 class SafeAgent(AgentHTTPHandler):
     async def handle(self, request: Request) -> JSONResponse:
