@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-api-framework"
+version = "0.1.0"
+description = "A production-ready framework for exposing AI agents via FastAPI endpoints"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Agent API Framework", email = "contact@agentapi.dev"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: FastAPI",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "websockets>=11.0",
+    "pydantic>=2.0.0",
+    "typer>=0.9.0",
+    "python-multipart>=0.0.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.25.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+
+[project.scripts]
+agent-api-framework = "agent_api_framework.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/agent-api-framework/agent-api-framework"
+Repository = "https://github.com/agent-api-framework/agent-api-framework"
+Documentation = "https://agent-api-framework.readthedocs.io"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agent_api_framework*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "--cov=agent_api_framework --cov-report=term-missing --cov-report=html"
